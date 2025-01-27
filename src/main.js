@@ -39,10 +39,7 @@ const searchSubmit = async e =>{
           addClass(loadMoreBtn,'visually-hidden');
 
           const {data} = await fetchImgByQuery(inputValue,page);
-        //   const totalPages = Math.ceil(data.totalHits / 15)
-         
-
-
+          
           if (data.total === 0) {
                 iziToast.error({
                   title:'Error',
