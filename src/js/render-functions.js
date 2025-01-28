@@ -40,3 +40,7 @@ export const simpleBox = function(){
 export const totalPages = function(elem){
   return Math.ceil(elem.totalHits / 15)
 }
+
+export const createLoader = function(){
+    return '<div class="js-load-more loader"></div>'
+}
