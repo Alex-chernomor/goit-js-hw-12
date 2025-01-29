@@ -2,10 +2,11 @@ import { fetchImgByQuery } from "./js/pixabay-api";
 import { createGalleryTemplate} from "./js/render-functions";
 import { addClass } from "./js/render-functions";
 import { removeClass } from "./js/render-functions";
-import iziToast from "izitoast";
-import { simpleBox } from "./js/render-functions";
 import { totalPages } from "./js/render-functions";
 import { createLoader } from "./js/render-functions";
+import iziToast from "izitoast";
+import SimpleLightbox from "simplelightbox";
+
 
 const formEl = document.querySelector('.form');
 const galleryEl = document.querySelector('.gallery');
@@ -18,7 +19,8 @@ let page = 1;
 let inputValue ='';
 
 
-simpleBox();
+const simpleBox = new SimpleLightbox('.gallery a');
+
 
 const searchSubmit = async e =>{
     try {
@@ -43,7 +45,6 @@ const searchSubmit = async e =>{
           addClass(loadMoreBtn,'visually-hidden');
           
           const {data} = await fetchImgByQuery(inputValue,page);
-          
           
           if (data.total === 0) {
                 iziToast.error({
@@ -72,7 +73,7 @@ const searchSubmit = async e =>{
            createGalleryTemplate(data);
            addClass(loader,'visually-hidden');
            galleryEl.innerHTML = createGalleryTemplate(data);
-           simpleBox().refresh();
+           simpleBox.refresh();
 
     } catch (error) {
         console.log(error);
@@ -111,7 +112,7 @@ const onLoadMoreBtnClick = async event => {
                 message:`We're sorry, but you've reached the end of search results.`
            });
           }
-          simpleBox().refresh();
+          simpleBox.refresh();
     } catch (err) {
       console.log(err);
     }

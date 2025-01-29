@@ -1,4 +1,4 @@
-import SimpleLightbox from "simplelightbox";
+
 
 export const createGalleryCard = imgInfo =>{
     return `
@@ -31,10 +31,6 @@ export const addClass = function(elem, className){
 
 export const removeClass = function(elem, className){
     return elem.classList.remove(className)
-};
-
-export const simpleBox = function(){
-    return new SimpleLightbox('.gallery a');
 };
 
 export const totalPages = function(elem){
